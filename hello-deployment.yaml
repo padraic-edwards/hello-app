@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: hello-app
+  name: hello-app
+  namespace: default
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      run: hello-app
+  template:
+    metadata:
+      labels:
+        run: hello-app
+    spec:
+      containers:
+      - image: kitch/hello-app:1.0
+        name: hello-app
