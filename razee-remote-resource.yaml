@@ -1,0 +1,9 @@
+apiVersion: "kapitan.razee.io/v1alpha1"
+kind: RemoteResource
+metadata:
+  name: hello-app
+  namespace: default
+spec:
+  requests:
+    - options:
+        url: https://raw.githubusercontent.com/kitch/hello-app/master/hello-deployment.yaml
