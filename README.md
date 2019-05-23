@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/kitch/hello-app.svg?branch=master)](https://travis-ci.com/kitch/hello-app)
+[![Build Status](https://travis-ci.com/kitch-razee/hello-app.svg?branch=master)](https://travis-ci.com/kitch-razee/hello-app)
 
 
 # hello-app
