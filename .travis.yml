@@ -3,20 +3,31 @@ services:
   - docker
 env:
   global:
+    - IMAGE_NAME=kitch/hello-app
     # REGISTRY_USER=...
     # REGISTRY_PASS=...
     # secret: "<something long>"
 
 script:
-  - docker build --tag kitch/hello-app .
+  - docker build --tag "$IMAGE_NAME" .
 
 after_script:
   - docker images
 
 before_deploy:
-  - docker login -u "$docker_user" -p "$docker_pass"
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_COMMIT}"
+  - if [ -n "${TRAVIS_TAG}" ]; then docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_TAG}"; fi
+
 deploy:
-  provider: script
-  script: docker push kitch/hello-app
-  on:
-    branch: master
+  - provider: script
+    script: docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${TRAVIS_COMMIT}"
+    on:
+      branch: master
+  - provider: script
+    script: docker push "${IMAGE_NAME}:${TRAVIS_TAG}"
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: ${TRAVIS_TAG} =~ [0-9]+\.[0-9]+\.[0-9]+
