@@ -31,9 +31,14 @@ func main() {
 		port = fromEnv
 	}
 
+	person := "User"
+	if fromEnv := os.Getenv("PERSON"); fromEnv != "" {
+		person = fromEnv
+	}
+	
 	// register hello function to handle all requests
 	server := http.NewServeMux()
-	server.HandleFunc("/", hello)
+	server.HandleFunc("/", hello, person)
 
 	// start the web server on port and accept requests
 	log.Printf("Server listening on port %s", port)
@@ -42,10 +47,10 @@ func main() {
 }
 
 // hello responds to the request with a plain-text "Hello, world" message.
-func hello(w http.ResponseWriter, r *http.Request) {
+func hello(w http.ResponseWriter, r *http.Request, person string) {
 	log.Printf("Serving request: %s", r.URL.Path)
 	host, _ := os.Hostname()
-	fmt.Fprintf(w, "Hello, Razee User!\n")
+	fmt.Fprintf(w, "Hello, Razee %s!\n", person)
 	fmt.Fprintf(w, "Version: 1.0.0\n")
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 }
