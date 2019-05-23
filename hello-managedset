@@ -1,0 +1,34 @@
+kind: ManagedSet
+apiVersion: kapitan.razee.io/v1alpha1
+metadata:
+  name: hello
+  namespace: default
+spec:
+  resources:
+    - apiVersion: "kapitan.razee.io/v1alpha1"
+      kind: RemoteResource
+      metadata:
+        name: hello-namespace
+        namespace: default
+      spec:
+        requests:
+          - options:
+              url: https://raw.githubusercontent.com/kitch-razee/hello-app/master/hello-namespace.yaml
+    - apiVersion: "kapitan.razee.io/v1alpha1"
+      kind: RemoteResource
+      metadata:
+        name: hello-deployment
+        namespace: default
+      spec:
+        requests:
+          - options:
+              url: https://raw.githubusercontent.com/kitch-razee/hello-app/master/hello-deployment.yaml
+    - apiVersion: "kapitan.razee.io/v1alpha1"
+      kind: RemoteResource
+      metadata:
+        name: hello-svc
+        namespace: default
+      spec:
+        requests:
+          - options:
+              url: https://raw.githubusercontent.com/kitch-razee/hello-app/master/hello-svc.yaml
