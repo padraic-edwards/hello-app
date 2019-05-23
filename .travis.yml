@@ -19,7 +19,7 @@ before_deploy:
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_COMMIT}"
   - if [ -n "${TRAVIS_TAG}" ]; then docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_TAG}"; fi
-  - ./build/process-template.sh kubernetes/razeedash-api/resource.yaml >/tmp/resource.yaml
+  - ./build/process-template.sh kubernetes/hello-app/resource.yaml >/tmp/resource.yaml
 
 deploy:
   - provider: script
