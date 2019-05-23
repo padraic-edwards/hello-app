@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    # REGISTRY_USER=...
+    # REGISTRY_PASS=...
+    # secret: "<something long>"
+
+script:
+  - docker build --tag kitch/hello-app .
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$docker_user" -p "$docker_pass"
+deploy:
+  provider: script
+  script: docker push kitch/hello-app
+  on:
+    branch: master
