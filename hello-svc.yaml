@@ -5,7 +5,7 @@ metadata:
     razee/watch-resource: detail
     run: hello-app
   name: hello-svc
-  namespace: kitch
+  namespace: hello
 spec:
   ports:
   - port: 80
