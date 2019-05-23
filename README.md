@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/kitch/hello-app.svg?branch=master)](https://travis-ci.com/kitch/hello-app)
+
+
 # hello-app
 
 A simple repo of commponents that you can use to try out some of the deployment features of razee.io
