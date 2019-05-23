@@ -16,5 +16,5 @@ spec:
         run: hello-app
     spec:
       containers:
-      - image: kitch/hello-app:1.0
+      - image: kitch/hello-app:latest
         name: hello-app
